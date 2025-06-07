@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqsuu540qbptv"]
+
+[ext_resource type="Script" uid="uid://dxrcms3wj7vgh" path="res://dialogue_scripts/dialogue.gd" id="1_758ep"]
+[ext_resource type="Texture2D" uid="uid://l5porehmqjna" path="res://icon.svg" id="1_kp46k"]
+[ext_resource type="LabelSettings" uid="uid://qyqu0cxutxhq" path="res://settings/dialogue_other_text_settings.tres" id="2_oi3j2"]
+[ext_resource type="LabelSettings" uid="uid://v85sefynwt4a" path="res://settings/mode_label.tres" id="4_hoxo3"]
+[ext_resource type="LabelSettings" uid="uid://bxo858qdjccmb" path="res://settings/regenerate_thoughts.tres" id="5_q2h7b"]
+[ext_resource type="Script" uid="uid://cdji2u7xyp7qt" path="res://dialogue_scripts/dialogue_handler.gd" id="6_iq77p"]
+[ext_resource type="Script" uid="uid://cd2y3bw4iytlb" path="res://dialogue_scripts/emb_to_text.gd" id="7_iqg0b"]
+[ext_resource type="Script" uid="uid://c4w5bj2u4pjbs" path="res://dialogue_scripts/text_to_emb.gd" id="8_xvgdd"]
+
+[node name="dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_758ep")
+
+[node name="background" type="TextureRect" parent="."]
+offset_left = -162.0
+offset_top = -241.0
+offset_right = 1408.0
+offset_bottom = 925.0
+texture = ExtResource("1_kp46k")
+
+[node name="SceneTextLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 32.0
+offset_right = 1097.0
+offset_bottom = 149.0
+text = "Test adfasf e efef ef ef f f ee fe  fee fe e fe f"
+label_settings = ExtResource("2_oi3j2")
+autowrap_mode = 2
+
+[node name="currMode" type="Label" parent="."]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 145.0
+offset_right = 480.0
+offset_bottom = 214.0
+text = "Current mode: Thinking"
+label_settings = ExtResource("4_hoxo3")
+
+[node name="nextMode" type="Button" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 138.0
+offset_right = 805.0
+offset_bottom = 201.0
+
+[node name="nextModeLabel" type="Label" parent="nextMode"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 342.0
+offset_bottom = 62.0
+text = "Finished Thinking!!"
+label_settings = ExtResource("4_hoxo3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="regenerateThoughts" type="Button" parent="."]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 251.0
+offset_right = 780.0
+offset_bottom = 478.0
+
+[node name="Label" type="Label" parent="regenerateThoughts"]
+layout_mode = 0
+offset_right = 332.0
+offset_bottom = 226.0
+text = "Regenerate
+Thoughts"
+label_settings = ExtResource("5_q2h7b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueHandler" type="Node" parent="."]
+script = ExtResource("6_iq77p")
+
+[node name="EmbToText" type="HTTPRequest" parent="DialogueHandler"]
+script = ExtResource("7_iqg0b")
+metadata/_custom_type_script = "uid://dl7ovhs7tndsj"
+
+[node name="TextToEmb" type="HTTPRequest" parent="DialogueHandler"]
+script = ExtResource("8_xvgdd")
+metadata/_custom_type_script = "uid://dl7ovhs7tndsj"
+
+[connection signal="pressed" from="nextMode" to="." method="_on_next_mode_pressed"]
+[connection signal="pressed" from="regenerateThoughts" to="." method="_on_regenerate_thoughts_pressed"]

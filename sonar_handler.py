@@ -26,10 +26,10 @@ def generate_embedding(text):
     
 
 
-def reconstruct_text(embedding):
+def reconstruct_text(embedding, randomness=0.0):
     return vec2text_model.predict(
         [torch.tensor(embedding, device=device, dtype=torch.float16)], 
-        target_lang="eng_Latn", sampler=TopPSampler(0.99), max_seq_len=10)
+        target_lang="eng_Latn", sampler=TopPSampler(1 - 0.1*randomness), max_seq_len=16)
 
 
 # test it out 

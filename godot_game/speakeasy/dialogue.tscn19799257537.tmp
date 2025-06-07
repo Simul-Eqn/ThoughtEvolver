@@ -1,0 +1,180 @@
+[gd_scene load_steps=14 format=3 uid="uid://bqsuu540qbptv"]
+
+[ext_resource type="Script" uid="uid://dxrcms3wj7vgh" path="res://dialogue_scripts/dialogue.gd" id="1_758ep"]
+[ext_resource type="Texture2D" uid="uid://l5porehmqjna" path="res://icon.svg" id="1_kp46k"]
+[ext_resource type="LabelSettings" uid="uid://qyqu0cxutxhq" path="res://settings/dialogue_other_text_settings.tres" id="2_oi3j2"]
+[ext_resource type="LabelSettings" uid="uid://v85sefynwt4a" path="res://settings/mode_label.tres" id="4_hoxo3"]
+[ext_resource type="Texture2D" uid="uid://cbyv8y6b7qwct" path="res://assets/regenBtn.svg" id="5_ajmj3"]
+[ext_resource type="LabelSettings" uid="uid://bxo858qdjccmb" path="res://settings/regenerate_thoughts.tres" id="5_q2h7b"]
+[ext_resource type="Script" uid="uid://cdji2u7xyp7qt" path="res://dialogue_scripts/dialogue_handler.gd" id="6_iq77p"]
+[ext_resource type="Script" uid="uid://cd2y3bw4iytlb" path="res://dialogue_scripts/emb_to_text.gd" id="7_iqg0b"]
+[ext_resource type="Script" uid="uid://c4w5bj2u4pjbs" path="res://dialogue_scripts/text_to_emb.gd" id="8_xvgdd"]
+[ext_resource type="LabelSettings" uid="uid://uhhwt0rjyswy" path="res://settings/SliderLabel.tres" id="9_cd3gt"]
+[ext_resource type="LabelSettings" uid="uid://rq7scdnyp2y7" path="res://settings/SliderValueLabelSettings.tres" id="10_x4m5d"]
+[ext_resource type="Texture2D" uid="uid://oufl5e7h54r" path="res://assets/refreshBtn.svg" id="12_mblti"]
+[ext_resource type="Script" uid="uid://dom6oxfuoqgpk" path="res://dialogue_scripts/restart_button.gd" id="13_1lttb"]
+
+[node name="dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_758ep")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -162.0
+offset_top = -241.0
+offset_right = 1408.0
+offset_bottom = 925.0
+texture = ExtResource("1_kp46k")
+
+[node name="SceneTextLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 32.0
+offset_right = 1097.0
+offset_bottom = 149.0
+text = "Test adfasf e efef ef ef f f ee fe  fee fe e fe f"
+label_settings = ExtResource("2_oi3j2")
+autowrap_mode = 2
+
+[node name="currMode" type="Label" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 131.0
+offset_right = 487.0
+offset_bottom = 200.0
+text = "Current mode: Thinking"
+label_settings = ExtResource("4_hoxo3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="nextMode" type="Button" parent="."]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 136.0
+offset_right = 845.0
+offset_bottom = 199.0
+
+[node name="nextModeLabel" type="Label" parent="nextMode"]
+layout_mode = 0
+offset_right = 339.0
+offset_bottom = 63.0
+text = "Finished Thinking!!"
+label_settings = ExtResource("4_hoxo3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="regenerateThoughts" type="Button" parent="."]
+layout_mode = 0
+offset_left = 412.5
+offset_top = 220.0
+offset_right = 747.5
+offset_bottom = 447.0
+icon = ExtResource("5_ajmj3")
+
+[node name="Label" type="Label" parent="regenerateThoughts"]
+layout_mode = 0
+offset_right = 335.0
+offset_bottom = 227.0
+text = " Regenerate
+ Thoughts"
+label_settings = ExtResource("5_q2h7b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueHandler" type="Node" parent="."]
+script = ExtResource("6_iq77p")
+
+[node name="EmbToText" type="HTTPRequest" parent="DialogueHandler"]
+script = ExtResource("7_iqg0b")
+metadata/_custom_type_script = "uid://dl7ovhs7tndsj"
+
+[node name="TextToEmb" type="HTTPRequest" parent="DialogueHandler"]
+script = ExtResource("8_xvgdd")
+metadata/_custom_type_script = "uid://dl7ovhs7tndsj"
+
+[node name="PersistenceSlider" type="VSlider" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 270.0
+offset_top = 227.0
+offset_right = 286.0
+offset_bottom = 447.0
+rotation = -0.523599
+tick_count = 100
+
+[node name="PersistenceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 227.0
+offset_right = 490.0
+offset_bottom = 262.0
+rotation = 1.0472
+text = "Persistence"
+label_settings = ExtResource("9_cd3gt")
+horizontal_alignment = 1
+
+[node name="PersistenceValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 195.0
+offset_right = 546.0
+offset_bottom = 241.0
+rotation = 1.0472
+text = "0.00"
+label_settings = ExtResource("10_x4m5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RandomnessSlider" type="VSlider" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 875.0
+offset_top = 227.0
+offset_right = 891.0
+offset_bottom = 447.0
+rotation = 0.523599
+tick_count = 100
+
+[node name="RandomnessLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 425.0
+offset_right = 1001.0
+offset_bottom = 462.0
+rotation = -1.0472
+text = "Randomness"
+label_settings = ExtResource("9_cd3gt")
+horizontal_alignment = 1
+
+[node name="RandomnessValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 400.0
+offset_right = 953.0
+offset_bottom = 453.0
+rotation = -1.0472
+text = "0.00"
+label_settings = ExtResource("10_x4m5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 880.0
+offset_top = 116.0
+offset_right = 988.0
+offset_bottom = 224.0
+pivot_offset = Vector2(54, 54)
+icon = ExtResource("12_mblti")
+script = ExtResource("13_1lttb")
+
+[connection signal="pressed" from="nextMode" to="." method="_on_next_mode_pressed"]
+[connection signal="pressed" from="regenerateThoughts" to="." method="_on_regenerate_thoughts_pressed"]
+[connection signal="value_changed" from="PersistenceSlider" to="." method="_on_persistence_slider_value_changed"]
+[connection signal="value_changed" from="RandomnessSlider" to="." method="_on_randomness_slider_value_changed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]

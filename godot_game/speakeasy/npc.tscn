@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://6j7c0kwbrwkd"]
+
+[ext_resource type="Script" uid="uid://djje5ko7quqm0" path="res://npc.gd" id="1_xxcha"]
+[ext_resource type="Texture2D" uid="uid://df1r6qp42sosn" path="res://assets/aaaaa.png" id="2_xxcha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxcha"]
+size = Vector2(394, 357)
+
+[node name="npc" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_xxcha")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_xxcha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_xxcha")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

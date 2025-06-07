@@ -1,0 +1,7 @@
+transformers
+git+https://github.com/nathanrooy/differential-evolution-optimization
+torch
+tensorboard
+tqdm
+rake-nltk
+nltk

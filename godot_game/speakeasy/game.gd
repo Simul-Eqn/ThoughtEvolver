@@ -14,7 +14,7 @@ var currLevel = 1
 
 
 func setLevel(level): 
-	if level == 0: 
+	if level == 0: # START SCREEN 
 		coffeeshop_npc.hide() 
 		coffeeshop_npc.self_active = false 
 		watercooler_npc.hide() 
@@ -48,7 +48,8 @@ func setLevel(level):
 		watercooler_npc.self_active = false 
 		familygathering_npc.show() 
 		familygathering_npc.self_active = true 
-	elif level == 4: 
+	elif level == 4: # END SCREEN 
+		get_tree().change_scene_to_file("res://end_screen.tscn")
 		coffeeshop_npc.hide() 
 		coffeeshop_npc.self_active = false 
 		watercooler_npc.hide() 
@@ -75,6 +76,8 @@ func _ready() -> void:
 	DialogueSignalBus.connect("activateNPCs", activateNPCs) 
 	DialogueSignalBus.connect("deactivateNPCs", deactivateNPCs)
 	DialogueSignalBus.connect("nextLevel", nextLevel)
+	DialogueSignalBus.num_passes = 0 
+	DialogueSignalBus.response = "" 
 
 
 

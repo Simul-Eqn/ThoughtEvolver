@@ -93,6 +93,7 @@ func _input(event):
 		return # do nothing 
 	if area_active and event.is_action_pressed("ui_accept") and self_active: 
 		if mode == 0: 
+			mode = -1 # disable temporarily 
 			if dialogue_key == "watercooler": 
 				# DO EXTRA HEHE show the watercooler NPC 
 				var npc_instance = npcCls.instantiate() 
@@ -112,12 +113,15 @@ func _input(event):
 			DialogueSignalBus.emit_signal("display_dialogue", dialogue_key)
 			dialogueBox.hide() 
 		elif mode == 2: 
+			mode = -1 # disable temporarily 
+			
 			DialogueSignalBus.emit_signal("playerHideDialogue")
 			
 			if eval == "evaluating...":
 				await finishedEval 
 			if eval == 'pass': 
 				textLabel.text = pass_texts[dialogue_key] 
+				DialogueSignalBus.num_passes += 1 
 			elif eval == 'fail': 
 				textLabel.text = fail_texts[dialogue_key] 
 			else: 
@@ -126,6 +130,7 @@ func _input(event):
 			dialogueBox.show() 
 			mode = 3 
 		elif mode == 3: 
+			mode = -1 # disable temporarily 
 			dialogueBox.hide() 
 			DialogueSignalBus.emit_signal("nextLevel")
 			mode = 0 
@@ -163,5 +168,5 @@ func startEval():
 		#print("STARTEAL")
 		eval = 'evaluating...'
 		eval = await evaluator.evaluate(questions[dialogue_key], DialogueSignalBus.response)
-		#print("EVAL: ", eval)
+		print("EVAL: ", eval)
 		emit_signal("finishedEval")

@@ -10,3 +10,5 @@ signal npcStartEval()
 var displaying_dialogue = false 
 
 var response = "" 
+
+var num_passes = 0 

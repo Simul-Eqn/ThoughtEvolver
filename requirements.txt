@@ -3,3 +3,5 @@
 sonar-space
 fairseq2==0.4.5 
 git+https://github.com/nathanrooy/differential-evolution-optimization
+google
+google-genai

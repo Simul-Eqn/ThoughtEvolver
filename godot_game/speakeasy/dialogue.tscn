@@ -166,6 +166,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RestartButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 880.0
 offset_top = 116.0
 offset_right = 988.0

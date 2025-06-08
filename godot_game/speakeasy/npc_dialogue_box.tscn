@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk7huhetrnpx7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xxcha"]
+font_size = 25
+font_color = Color(0.368627, 0.27451, 0.27451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kh24r"]
+font_size = 20
+font_color = Color(0.5, 0.37, 0.37, 1)
+
+[node name="dialogueBox" type="ColorRect"]
+offset_left = 18.0
+offset_top = -169.0
+offset_right = 305.0
+offset_bottom = -39.0
+color = Color(0.74902, 0.701961, 0.639216, 1)
+
+[node name="nameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 42.0
+text = "  (old friend)  "
+label_settings = SubResource("LabelSettings_xxcha")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="textLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 288.0
+offset_bottom = 122.0
+text = "  How's life?"
+label_settings = SubResource("LabelSettings_kh24r")
+vertical_alignment = 2
+autowrap_mode = 3

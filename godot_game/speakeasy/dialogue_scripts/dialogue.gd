@@ -33,7 +33,7 @@ var mode = 0
 
 var questions = {
 	"coffeeshop": "Hey! Fancy meeting you here. What's your go-to coffee order?", 
-	"watercooler": "Oh hi [name], how was your weekend?", 
+	"watercooler": "Oh hi [y/n], how was your weekend?", 
 	'familygathering': "So, how's life?", 
 }
 var initThoughts = {
@@ -153,6 +153,7 @@ func thoughts_embs_then_update():
 	updateDialogueOptionTexts()
 
 func resetDialogueOptionTexts(): 
+	loadingDialogueOptionTexts() 
 	dialogueHandler.thoughts = []#"hi", "relaxed", "sad", "bye", "good", "bad"] 
 	for i in range(dialogueHandler.popsize): 
 		dialogueHandler.thoughts.append(initThoughts[currQnKey][i])
@@ -161,11 +162,12 @@ func resetDialogueOptionTexts():
 	setMode(1) 
 
 func on_display_dialogue(text_key): 
+	DialogueSignalBus.emit_signal("deactivateNPCs")
 	dialogueHandler.selecteds = [false, false, false, false, false, false]
 	updateSelectedStates() 
 	currQnKey = text_key 
 	self.show()
-	DialogueSignalBus.displaying_dialogue = true 
+	#DialogueSignalBus.displaying_dialogue = true 
 	resetDialogueOptionTexts()
 	text_label.text = questions[text_key] 
 	
@@ -185,7 +187,11 @@ func finish():
 	
 	text_label.text = "" 
 	self.hide() 
-	DialogueSignalBus.displaying_dialogue = false 
+	#DialogueSignalBus.displaying_dialogue = false 
+	
+	DialogueSignalBus.emit_signal("activateNPCs")
+	DialogueSignalBus.emit_signal("playerDisplayDialogue")
+	DialogueSignalBus.emit_signal("npcStartEval")
 
 func loadingDialogueOptionTexts(): 
 	for i in range(len(dialogueOptions)): 

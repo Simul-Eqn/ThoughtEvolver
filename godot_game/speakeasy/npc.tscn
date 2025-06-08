@@ -1,21 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://6j7c0kwbrwkd"]
+[gd_scene load_steps=6 format=3 uid="uid://6j7c0kwbrwkd"]
 
 [ext_resource type="Script" uid="uid://djje5ko7quqm0" path="res://npc.gd" id="1_xxcha"]
-[ext_resource type="Texture2D" uid="uid://df1r6qp42sosn" path="res://assets/aaaaa.png" id="2_xxcha"]
+[ext_resource type="Texture2D" uid="uid://c3l5g4tesjbko" path="res://assets/coffeeshop_small.png" id="2_xxcha"]
+[ext_resource type="PackedScene" uid="uid://bk7huhetrnpx7" path="res://npc_dialogue_box.tscn" id="3_kh24r"]
+[ext_resource type="Script" uid="uid://dxqbmj8gtdagu" path="res://evaluate.gd" id="4_ul7y6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxcha"]
-size = Vector2(394, 357)
+size = Vector2(300, 300)
 
 [node name="npc" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_xxcha")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
 texture = ExtResource("2_xxcha")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0.5)
+position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_xxcha")
+
+[node name="dialogueBox" parent="." instance=ExtResource("3_kh24r")]
+
+[node name="evaluate" type="HTTPRequest" parent="."]
+script = ExtResource("4_ul7y6")
+metadata/_custom_type_script = "uid://dl7ovhs7tndsj"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

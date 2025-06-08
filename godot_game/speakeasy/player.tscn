@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://csq14i6iolnou"]
+[gd_scene load_steps=5 format=3 uid="uid://csq14i6iolnou"]
 
-[ext_resource type="Texture2D" uid="uid://l5porehmqjna" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b2ti7jpvq80i5" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="SpriteFrames" uid="uid://cippny58hwdq6" path="res://player_spriet_frames.tres" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bk7huhetrnpx7" path="res://npc_dialogue_box.tscn" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(112, 111)
@@ -10,9 +11,18 @@ size = Vector2(112, 111)
 collision_mask = 4
 script = ExtResource("1_onrkg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_4flbx")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+sprite_frames = ExtResource("2_onrkg")
+animation = &"idle"
+frame_progress = 0.00405512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -0.5)
+scale = Vector2(0.1, 0.1)
 shape = SubResource("RectangleShape2D_4flbx")
+
+[node name="dialogueBox" parent="." instance=ExtResource("3_i3pqv")]
+offset_left = -143.0
+offset_top = -191.0
+offset_right = 144.0
+offset_bottom = -61.0

@@ -75,6 +75,7 @@ func _ready():
 		dialogueOptions.append(dialogue_option_instance)
 		
 		var updateSelected = func (): 
+			#print("SELECTED", i)
 			dialogueHandler.selecteds[i] = not dialogueHandler.selecteds[i] 
 			#print(dialogueHandler.selecteds)
 			if mode == 2: # finalizing so deselect others 
@@ -207,6 +208,7 @@ func updateDialogueOptionTexts():
 
 # slider 
 func _on_persistence_slider_value_changed(value: float) -> void:
+	#print("PERS SLIDER", value)
 	dialogueHandler.persistence = value/100
 	persistenceValueLabel.text = str(dialogueHandler.persistence)
 

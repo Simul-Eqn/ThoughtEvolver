@@ -7,9 +7,10 @@ var area_active = false
 @onready var sprite = $Sprite
 var self_active = false 
 @onready var dialogueBox = $dialogueBox
-@onready var nameLabel = $dialogueBox/nameLabel
-@onready var textLabel = $dialogueBox/textLabel
+@onready var nameLabel = $dialogueBox/dialogueBox/nameLabel
+@onready var textLabel = $dialogueBox/dialogueBox/textLabel
 @onready var evaluator = $evaluate
+
 
 var npcCls = preload("res://npc.tscn")
 
@@ -143,12 +144,13 @@ func _ready() -> void:
 	sprite.texture = normal_texture[dialogue_key] 
 	sprite.scale = scales[dialogue_key] 
 	#self_active = false 
-	dialogueBox.position = boxOffset[dialogue_key]
+	dialogueBox.box.global_position = global_position + boxOffset[dialogue_key]
 	dialogueBox.hide() 
 	mode = 0 
 	
 	DialogueSignalBus.connect("npcStartEval", startEval)
-
+	
+	
 
 func _on_body_entered(body: Node2D) -> void:
 	area_active = true 
@@ -168,5 +170,5 @@ func startEval():
 		#print("STARTEAL")
 		eval = 'evaluating...'
 		eval = await evaluator.evaluate(questions[dialogue_key], DialogueSignalBus.response)
-		print("EVAL: ", eval)
+		#print("EVAL: ", eval)
 		emit_signal("finishedEval")

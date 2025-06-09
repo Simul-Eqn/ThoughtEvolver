@@ -4,16 +4,15 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite2D 
 @onready var dialogueBox = $dialogueBox
-@onready var nameLabel = $dialogueBox/nameLabel
-@onready var textLabel = $dialogueBox/textLabel
+@onready var nameLabel = $dialogueBox/dialogueBox/nameLabel
+@onready var textLabel = $dialogueBox/dialogueBox/textLabel
 
-var default_dialoguebox_pos 
+var default_dialoguebox_pos = Vector2(-50, -180)
 
 func _ready() -> void:
 	dialogueBox.hide() 
 	DialogueSignalBus.connect("playerDisplayDialogue", display_response) 
 	DialogueSignalBus.connect("playerHideDialogue", hide_response) 
-	default_dialoguebox_pos = dialogueBox.position 
 
 var SPEED = 200.0
 
@@ -109,9 +108,9 @@ func _physics_process(delta: float) -> void:
 
 
 func display_response(): 
-	dialogueBox.position = default_dialoguebox_pos 
-	if dialogueBox.global_position.y < 0: 
-		dialogueBox.global_position.y = 0 
+	dialogueBox.box.global_position = global_position + default_dialoguebox_pos 
+	if dialogueBox.box.global_position.y < 0: 
+		dialogueBox.box.global_position.y = 0 
 	nameLabel.text = "Player"
 	textLabel.text = DialogueSignalBus.response 
 	dialogueBox.show() 

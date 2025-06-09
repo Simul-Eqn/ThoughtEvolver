@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx2tvrol3yyax"]
+
+[ext_resource type="Script" uid="uid://dh8bkg8qyeh4l" path="res://credits.gd" id="1_nm7lk"]
+[ext_resource type="Theme" uid="uid://b8h24hnxn1rvm" path="res://guide_close_button.tres" id="2_c1t8d"]
+
+[sub_resource type="SystemFont" id="SystemFont_c1t8d"]
+font_names = PackedStringArray("Ebrima")
+
+[sub_resource type="Theme" id="Theme_g4wvt"]
+default_font = SubResource("SystemFont_c1t8d")
+default_font_size = 30
+
+[sub_resource type="SystemFont" id="SystemFont_g4wvt"]
+font_names = PackedStringArray("Cambria Math")
+
+[sub_resource type="Theme" id="Theme_pjc1l"]
+default_font = SubResource("SystemFont_g4wvt")
+default_font_size = 60
+
+[node name="Credits" type="Node2D"]
+position = Vector2(1052, 0)
+script = ExtResource("1_nm7lk")
+
+[node name="Close" type="RichTextLabel" parent="."]
+offset_right = 100.0
+offset_bottom = 100.0
+theme = ExtResource("2_c1t8d")
+bbcode_enabled = true
+text = "[color=red]✖[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CloseButton" type="Button" parent="Close"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CreditsText" type="RichTextLabel" parent="."]
+offset_left = -1030.0
+offset_top = 137.0
+offset_right = 60.0
+offset_bottom = 634.0
+theme = SubResource("Theme_g4wvt")
+bbcode_enabled = true
+text = "[b]Visuals credits:[/b] 
+Human NPC and player designs from: https://kenney.nl/assets/rpg-urban-pack 
+Cafe and tea shop asset pack: https://pixelpossumstudio.itch.io/cafe-and-tea-shop-2d 
+Water cooler from https://opengameart.org/content/office-window-slam 
+Home tilemap: https://opengameart.org/content/indoor-tileset 
+Other graphics made with Google Slides or inbuilt in Godot 
+
+
+[b]Mechanics credits:[/b] 
+Code for genetic algorithm inspired by github.com/nathanrooy/differential-evolution-optimization/ 
+Used facebookresearch's SONAR model for embedding-to-text (ran on my own computer) 
+Used Gemini for evaluation of social awkwardness 
+
+Small dialogue box and player animation inspiration: https://www.youtube.com/watch?v=LMSbPkNgnWA 
+Background tilemap: https://www.youtube.com/watch?v=vEyDbROrw0Q (extra credits to the comment by @alexxander7289 that addressed an issue I faced not mentioned in the video!!)
+Countless Godot Forum, Reddit, and StackOverflow pages 
+
+Heavy assistance in Godot syntax from my brother :) 
+
+
+my first game jam "
+
+[node name="CreditsHeader" type="Label" parent="."]
+offset_left = -679.0
+offset_top = 14.0
+offset_right = -270.0
+offset_bottom = 113.0
+theme = SubResource("Theme_pjc1l")
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Close/CloseButton" to="." method="_on_close_button_pressed"]

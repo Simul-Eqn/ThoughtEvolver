@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://brdq6mhu6nbsf"]
+
+[ext_resource type="Script" uid="uid://dhjthld8c10ua" path="res://start_screen_boucer.gd" id="1_1udx5"]
+[ext_resource type="Texture2D" uid="uid://c0qhpebej7uao" path="res://assets/dialogue_highlight.svg" id="1_vbedr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dt071"]
+bounce = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtbxj"]
+radius = 110.354
+
+[node name="StartScreenBouncer" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_dt071")
+gravity_scale = 0.0
+script = ExtResource("1_1udx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jtbxj")
+
+[node name="DialogueHighlight" type="Sprite2D" parent="."]
+texture = ExtResource("1_vbedr")

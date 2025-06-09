@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 DialogueSignalBus="*res://singletons/dialogue_signal_bus.gd"
 
+[display]
+
+window/custom=""
+window/main_scene="uid://cclo1cg1k7ddn"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/awaitable_http_request/plugin.cfg")
@@ -49,3 +54,8 @@ right={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true

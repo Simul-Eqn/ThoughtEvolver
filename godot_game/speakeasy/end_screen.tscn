@@ -1,26 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://chtmgo25v5x7t"]
+[gd_scene load_steps=5 format=3 uid="uid://chtmgo25v5x7t"]
 
 [ext_resource type="Script" uid="uid://b0y038smwxd3j" path="res://end_screen.gd" id="1_my301"]
+[ext_resource type="Texture2D" uid="uid://lqhel503qaeq" path="res://assets/end_bg0.svg" id="2_abjgy"]
+[ext_resource type="Theme" uid="uid://bg8xmrftkkdhh" path="res://end_screen_buttton_theme.tres" id="3_xu7hh"]
+
+[sub_resource type="Theme" id="Theme_my301"]
+default_font_size = 30
 
 [node name="endScreen" type="CanvasLayer"]
 script = ExtResource("1_my301")
 
-[node name="Prompt" type="Label" parent="."]
+[node name="bg" type="TextureRect" parent="."]
+offset_top = -73.0
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("2_abjgy")
+
+[node name="Prompt" type="RichTextLabel" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = -108.0
-offset_right = 154.0
-offset_bottom = -75.0
+offset_left = -354.0
+offset_top = -291.0
+offset_right = 354.0
+offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_my301")
+bbcode_enabled = true
 text = "You have navigated 1 !!"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="Back to Title" type="Button" parent="."]
 anchors_preset = 8
@@ -29,11 +41,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -246.0
-offset_top = 16.0
+offset_top = 110.0
 offset_right = -46.0
-offset_bottom = 116.0
+offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_xu7hh")
 text = "Back to Title"
 
 [node name="Quit" type="Button" parent="."]
@@ -43,11 +56,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 46.0
-offset_top = 16.0
+offset_top = 110.0
 offset_right = 246.0
-offset_bottom = 116.0
+offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_xu7hh")
 text = "Quit"
 
 [connection signal="pressed" from="Back to Title" to="." method="_on_back_to_title_pressed"]

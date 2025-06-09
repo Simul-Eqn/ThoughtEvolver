@@ -22,7 +22,3 @@ scale = Vector2(0.1, 0.1)
 shape = SubResource("RectangleShape2D_4flbx")
 
 [node name="dialogueBox" parent="." instance=ExtResource("3_i3pqv")]
-offset_left = -143.0
-offset_top = -191.0
-offset_right = 144.0
-offset_bottom = -61.0

@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt0nobt00tn8t"]
+
+[ext_resource type="Script" uid="uid://ypecjiq3jw5m" path="res://guide.gd" id="1_kce4j"]
+[ext_resource type="Theme" uid="uid://b8h24hnxn1rvm" path="res://guide_close_button.tres" id="2_4mqed"]
+[ext_resource type="Texture2D" uid="uid://bdd4joadlw4gp" path="res://assets/guide/dialogue_0.png" id="3_feuw2"]
+[ext_resource type="Script" uid="uid://chynkbj2m40fw" path="res://guide/carousel.gd" id="3_gajip"]
+[ext_resource type="LabelSettings" uid="uid://devs8a750lpke" path="res://guide/carouselBtnLabel.tres" id="4_83y8a"]
+
+[sub_resource type="Theme" id="Theme_83y8a"]
+default_font_size = 30
+
+[node name="Guide" type="Node2D"]
+script = ExtResource("1_kce4j")
+
+[node name="Close" type="RichTextLabel" parent="."]
+show_behind_parent = true
+offset_left = 1052.0
+offset_right = 1152.0
+offset_bottom = 100.0
+theme = ExtResource("2_4mqed")
+bbcode_enabled = true
+text = "[color=red]✖[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Close"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+theme = ExtResource("2_4mqed")
+
+[node name="Carousel" type="Node2D" parent="."]
+script = ExtResource("3_gajip")
+
+[node name="LeftButton" type="Button" parent="Carousel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 187.0
+offset_top = 248.0
+offset_right = 287.0
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Carousel/LeftButton"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "<"
+label_settings = ExtResource("4_83y8a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Carousel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 288.0
+offset_top = 136.0
+offset_right = 864.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_feuw2")
+expand_mode = 3
+
+[node name="RightButton" type="Button" parent="Carousel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 864.0
+offset_top = 248.0
+offset_right = 964.0
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Carousel/RightButton"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+text = ">"
+label_settings = ExtResource("4_83y8a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Carousel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = 484.0
+offset_right = 1086.0
+offset_bottom = 619.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_83y8a")
+bbcode_enabled = true
+text = "adfasdfefeese
+a
+a"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Close/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Carousel/LeftButton" to="Carousel" method="_on_left_button_pressed"]
+[connection signal="pressed" from="Carousel/RightButton" to="Carousel" method="_on_right_button_pressed"]
